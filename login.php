@@ -61,7 +61,7 @@ function showLoginForm($data) {
     </div>
     <div>
     <label for="password">Wachtwoord:</label>
-    <input type="tel" id="password" name="password" value="'. $data ["password"] .'">
+    <input type="password" id="password" name="password" value="'. $data ["password"] .'">
     <span class="error"> '. $data ["passwordErr"] .' </span>
     </div>
     <input type="hidden" name="page" value="login">

@@ -100,125 +100,76 @@ function processRequest($page) {
     }
 
     $data['page']= $page;
+    $data['menu'] = array("home" => "Home", "about" => "About", "contact" => "Contact", "webshop" => "Wijnwinkel");
+    if (isUserLoggedIn()) {
+        $data['menu']['cart'] = "Winkelwagen";
+        $data['menu']['logout'] = "Loguit " . getLoggedInUsername();
+    } else {
+        $data['menu']['login'] = "Login";
+        $data['menu']['register'] = "Registreer";
+    }
     return $data;
 }
 
 function showResponsePage($data) {
-   beginDocument(); 
-   showHeadSection(); 
-   showBodySection($data); 
-   endDocument();  
-}
-
-function beginDocument() 
-{ 
-   echo '<!doctype html> 
-<html>'; 
-} 
-
-function showHeadSection() 
-{ 
-  echo '<head>'; 
-  echo '<link rel="stylesheet" href="CSS\mystyle.css">';
-  echo '</head>';
-}
-
-function showBodySection($data) 
-{ 
-   echo '    <body>' . PHP_EOL; 
-   showHeader($data);
-   showMenu(); 
-   showGenericErr($data); 
-   showContent($data); 
-   showFooter(); 
-   echo '    </body>' . PHP_EOL; 
-} 
-
-function endDocument() 
-{ 
-   echo  '</html>'; 
-} 
-
-function showHeader($data) 
-{ 
-    echo '<h1 class="title">';
-    switch ($data['page']) 
-   { 
-       case 'home':
-          require_once('home.php');
-          showHomeHeader();
-          break;
-       case 'cart':
-          require_once('shoppingcart.php');
-          showShoppingCartHeader();
-          break;
-       case 'webshop';
-       require_once('webshop.php');
-          showWebshopHeader();
-          break;
-       case 'about':
-          require_once('about.php');
-          showAboutHeader();
-          break;
-       case 'contact':
-       case 'thanks':
-          require_once('contact.php');
-          showContactHeader();
-          break; 
-       case 'register':
-          require_once('register.php');
-          showRegisterHeader();
-          break; 
-       case 'login':
-          require_once('login.php');
-          showLoginHeader();
-          break;
-       case 'logout':
-          require_once('home.php');
-          break;
-       case 'detail':
-          require_once('webshop_details_page.php');
-          showWebshopDetailsPageHeader($data);
-          break;
-       case 'orderconformation':
-          require_once('order_conformation.php');
-          showOrderconformationHeader();
-          break;
-       default:
-          show404Header();
-          break;           
-   }     
-    echo '</h1>';  
-} 
-
-function showMenu ()
-{
-   echo '<ul class="navigation">
-    <li><a HREF="index.php?page=home">Home</a></li>
-    <li><a HREF="index.php?page=about">Over mij</a></li>
-    <li><a HREF="index.php?page=contact">Contact</a></li>
-    <li><a HREF="index.php?page=webshop">Wijnwinkel</a></li>';
-    
-
-    if (isUserLoggedIn()) {
-        echo ' <li><a HREF="index.php?page=cart">Winkelwagen</a></li>';
-        echo '<li><a HREF="index.php?page=logout">Loguit ' . getLoggedInUsername() . '</a></li>';
-    } else {
-        echo '<li><a HREF="index.php?page=login">Login</a></li>;
-              <li><a HREF="index.php?page=register">Registreer</a></li>';
-    }
-    echo '</ul>' ;
-}
-function showGenericErr($data) {
-    if (isset($data ["genericErr"])) {
-        echo '<div class="error">'. $data ["genericErr"] ."</div>";
+    $view = NULL;
+    switch($data['page']) { 
+        case 'home':
+           require_once('views/home_doc.php');
+           $view = new HomeDoc($data);
+           break;
+           
+        case 'about':
+           require_once('views/about_doc.php');
+           $view = new AboutDoc($data);
+           break;
+           
+        case 'contact':
+           require_once('contact.php');
+           
+           break; 
+           
+        case 'register':
+            require_once('register.php');
+            break;
+ 
+        case 'webshop';
+            require_once('webshop.php');
+            break;
+            
+        case 'detail';
+            require_once('webshop_details_page.php');
+                break;
+        
+        case 'cart':
+            require_once('shoppingcart.php');
+            break;
+      
+        case 'login':
+            require_once('login.php');
+            break;
+            
+        case 'thanks':
+            require_once('thanks.php');
+             break;
+ 
+        case 'orderconformation':
+             require_once('order_conformation.php');
+             break;
+            
+        default: 
+           break;
+    }     
+    if ($view != NULL) {
+        $view -> show();
     }
 }
+
   function show404Header ()
   {
     echo 'Page not found';
   }
-  
+/*  
 function showContent($data) {  
    switch($data['page']) { 
        case 'home':
@@ -275,13 +226,8 @@ function showContent($data) {
           break;
    }     
 } 
+*/
 
-function showFooter ()
-  {
-      echo '<footer>';
-      echo '<p><span>&copy;</span> 2022 Author: Hanne Meijers</p>';
-      echo '</footer>';
-  }
 
 function show404Content()
 {

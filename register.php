@@ -96,12 +96,12 @@ function showRegisterForm ($data) {
     </div>
     <div>
     <label for="password">Wachtwoord:</label>
-    <input type="tel" id="password" name="password" value="'. $data ["password"] .'">
+    <input type="password" id="password" name="password" value="'. $data ["password"] .'">
     <span class="error"> '. $data ["passwordErr"] .' </span>
     </div>
     <div>
     <label for="passwordCheck">Wachtwoord herhaal:</label>
-    <input type="tel" id="passwordCheck" name="passwordCheck" value="'. $data ["passwordCheck"] .'">
+    <input type="password" id="passwordCheck" name="passwordCheck" value="'. $data ["passwordCheck"] .'">
     <span class="error"> '. $data ["passwordCheckErr"] .' </span>
     </div>
       <input type="hidden" name="page" value="register">
