@@ -125,8 +125,8 @@ function showResponsePage($data) {
            break;
            
         case 'contact':
-           require_once('contact.php');
-           
+           require_once('views/contact_doc.php');
+           $view = new ContactDoc($data);
            break; 
            
         case 'register':
@@ -143,6 +143,7 @@ function showResponsePage($data) {
         
         case 'cart':
             require_once('shoppingcart.php');
+            
             break;
       
         case 'login':
@@ -150,8 +151,9 @@ function showResponsePage($data) {
             break;
             
         case 'thanks':
-            require_once('thanks.php');
-             break;
+            require_once('views/thanks_doc.php');
+            $view = new ThanksDoc($data);
+            break;
  
         case 'orderconformation':
              require_once('order_conformation.php');
