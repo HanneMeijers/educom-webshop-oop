@@ -1,8 +1,11 @@
 <?php
 require_once 'forms_doc.php';
 class ContactDoc extends FormsDoc {
-protected function showFormContent()
-{
+   function showHeader () {
+      echo 'Contactformulier';
+  }
+
+protected function showFormContent() {
    echo '    <div>
    <label for="salutation">Aanhef:</label>
    <select id="salutation" name="salutation">

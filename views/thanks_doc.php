@@ -1,5 +1,5 @@
 <?php
-require_once 'thanks_doc.php'; 
+require_once 'basic_doc.php'; 
 class ThanksDoc extends BasicDoc {
 
 protected function showHeader () {
@@ -9,11 +9,11 @@ protected function showHeader () {
 
 protected function showContent () {
     echo '<p>Bedankt voor uw reactie:</p> 
-    <div>Aanhef: '. SALUTATIONS [ $data ["salutation"] ] .'</div>    
-    <div>Naam: '. $data ["name"] .' </div>
-    <div>Email: '. $data ["email"] .' </div>
-    <div>Telefoonnummer: '. $data ["phone"] .' </div>
-    <div>Communicatievoorkeur: '. COMMPREFS[ $data ["commPref"] ].' </div>
-    <div>Uw bericht: '. $data ["message"] .' </div> ';
+    <div>Aanhef: '. SALUTATIONS [ $this -> data ["salutation"] ] .'</div>    
+    <div>Naam: '. $this -> data ["name"] .' </div>
+    <div>Email: '. $this -> data ["email"] .' </div>
+    <div>Telefoonnummer: '. $this -> data ["phone"] .' </div>
+    <div>Communicatievoorkeur: '. COMMPREFS[ $this -> data ["commPref"] ].' </div>
+    <div>Uw bericht: '. $this -> data ["message"] .' </div> ';
 }
 }

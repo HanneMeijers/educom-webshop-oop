@@ -1,7 +1,7 @@
 <?php
 require_once "basic_doc.php";
 
-class ProductDoc extends BasicDoc {
+abstract class ProductDoc extends BasicDoc {
     protected function showActionForm ($action, $buttontext, $productid= null) {
         if (isUserLoggedIn()) {
          echo '    <form method="post" action="index.php" >   

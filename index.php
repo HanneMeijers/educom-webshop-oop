@@ -130,24 +130,28 @@ function showResponsePage($data) {
            break; 
            
         case 'register':
-            require_once('register.php');
+            require_once('views/register_doc.php');
+            $view = new RegisterDoc($data);
             break;
  
         case 'webshop';
-            require_once('webshop.php');
+            require_once('views/webshop_doc.php');
+            $view = new WebshopDoc($data);
             break;
             
         case 'detail';
-            require_once('webshop_details_page.php');
+            require_once('views/webshop_details_page_doc.php');
+            $view = new WebshopDetailsPageDoc($data);
                 break;
         
         case 'cart':
-            require_once('shoppingcart.php');
-            
-            break;
+            require_once('views/shoppingcart_doc.php');
+            $view = new ShoppingcartDoc($data);
+                break;
       
         case 'login':
-            require_once('login.php');
+            require_once('views/login_doc.php');
+            $view = new LoginDoc($data);
             break;
             
         case 'thanks':
@@ -156,7 +160,8 @@ function showResponsePage($data) {
             break;
  
         case 'orderconformation':
-             require_once('order_conformation.php');
+             require_once('views/order_conformation_doc.php');
+             $view = new OrderconformationDoc($data);
              break;
             
         default: 

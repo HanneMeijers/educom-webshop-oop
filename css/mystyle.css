@@ -11,16 +11,12 @@ div {
   margin-bottom: 15px;
 }  
 
-input[type=text] {
+input {
   width:400px;
 }
 
-input[type=tel] {
-  width:400px;
-}
-
-input[type=email] {
-  width:400px;
+input[type=radio] , input[type=submit] {
+  width: auto;
 }
 
 h1.title {
