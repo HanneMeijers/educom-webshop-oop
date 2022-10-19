@@ -27,7 +27,9 @@ protected function showContent() {
     </table>
     
     </div>'; 
-    $this->showActionForm("order", "Bestellen");
+     if (!empty ($shoppingCartRows)) {
+        $this->showActionForm("order", "Bestellen");
+     }
 }
 
 private function showShoppingCartRow($shoppingCartRow) { 

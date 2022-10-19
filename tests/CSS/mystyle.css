@@ -112,6 +112,12 @@ color:red;
   align-content: center;
 }
 
+.webshopDetailButton {
+  justify-content: center;
+  align-content: center;
+  display: flex;
+}
+
 .center {
   margin: auto;
   text-align: center;
@@ -144,11 +150,4 @@ td span {
   margin-top: 40px;
   row-gap: 20px;
   width: 100%;
-}
-
-.cartbuttonremove {
-
-
-}
-.cartbuttonorder {
 }

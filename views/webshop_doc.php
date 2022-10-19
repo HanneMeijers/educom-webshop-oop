@@ -16,13 +16,13 @@ class WebshopDoc extends ProductDoc {
     
     private function showProduct($product) {
         echo '<div class="innergrid">';
-        echo '<a href="index.php?page=detail&id=' . $this->product['id'] .'">';
-        echo '<div class="webshopimg"><img src="Images/' . $this->product['img_url'] .'" alt="' . $this->product['name'] . '" height="200px" ></div><br>' ;
-        echo '<div class="webshopname">' . $this->product['name'] . '</div><br>';
-        echo '<div class="webshopprice">&euro; ' . number_format ($this->product['price_per_one'], 2,',','.') . '</div>';
+        echo '<a href="index.php?page=detail&id=' . $product['id'] .'">';
+        echo '<div class="webshopimg"><img src="Images/' . $product['img_url'] .'" alt="' . $product['name'] . '" height="200px" ></div><br>' ;
+        echo '<div class="webshopname">' . $product['name'] . '</div><br>';
+        echo '<div class="webshopprice">&euro; ' . number_format ($product['price_per_one'], 2,',','.') . '</div>';
         echo '</a>';
         echo '<div class="webshopbutton">';
-        $this -> showActionForm("addtocart", "Toevoegen", $this->product [ 'id' ]);
+        $this -> showActionForm("addtocart", "Toevoegen", $product [ 'id' ]);
         echo '</div>';
         echo '</div>';
     }

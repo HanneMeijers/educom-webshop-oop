@@ -2,6 +2,7 @@
 require_once ("repository_db.php");
 function handleShoppingCartActions () {
     $action = getPostDataVariabele("action");
+    $data = array();
     switch ($action) {
         case "addtocart":
         case "increaseQuantity":

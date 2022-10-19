@@ -8,7 +8,7 @@ abstract class ProductDoc extends BasicDoc {
         <input type="hidden" name="page" value="cart"> 
         <input type="hidden" name="productid" value="'. $productid . '">
         <input type="hidden" name="action" value="'. $action .'"> 
-        <button>' . $buttontext. '</button>
+        <button class="actionButton">' . $buttontext. '</button>
         </form> ';
          }
     }

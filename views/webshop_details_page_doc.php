@@ -18,11 +18,13 @@ class WebshopDetailsPageDoc extends ProductDoc {
 
         private function showProduct($product) {
             echo '<div class="webshop-item">';
-            echo '<div class="center"><img src="Images/' . $this->product ['img_url'] .'" alt="' . $this->product ['name'] . '" height="400px" ></div>' ;
-            echo '<div class="center">Naam: ' . $this->product['name'] . '</div>';
-            echo '<div class="center">Beschrijving: ' . $this->product['description'] . '</div>';
-            echo '<div class="center">Prijs: &euro; ' . number_format ($this->product['price_per_one'], 2,',','.') . '</div>';
-            showActionForm("addtocart", "Toevoegen", $this->product [ 'id' ]);
+            echo '<div class="center"><img src="Images/' . $product ['img_url'] .'" alt="' . $product ['name'] . '" height="400px" ></div>' ;
+            echo '<div class="center">Naam: ' . $product['name'] . '</div>';
+            echo '<div class="center">Beschrijving: ' . $product['description'] . '</div>';
+            echo '<div class="center">Prijs: &euro; ' . number_format ($product['price_per_one'], 2,',','.') . '</div>';
+            echo '<div class="webshopDetailButton">';
+            $this->showActionForm("addtocart", "Toevoegen", $product [ 'id' ]);
+            echo '</div>';
             echo '</div>';
         }
 }
