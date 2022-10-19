@@ -9,7 +9,7 @@ protected function showHeader () {
 
 protected function showContent () { 
 echo '<p>Bedankt voor uw bestelling. <br>
- Uw bestelnummer is: '. $this -> data ['invoice_number'].' <br>
- De bevestiging wordt gemaild naar: '. $this -> data ['email'].'</p>';
+ Uw bestelnummer is: '. $this->data ['invoice_number'].' <br>
+ De bevestiging wordt gemaild naar: '. $this->data ['email'].'</p>';
 }
 }

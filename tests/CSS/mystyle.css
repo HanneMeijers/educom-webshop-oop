@@ -11,16 +11,12 @@ div {
   margin-bottom: 15px;
 }  
 
-input[type=text] {
+input {
   width:400px;
 }
 
-input[type=tel] {
-  width:400px;
-}
-
-input[type=email] {
-  width:400px;
+input[type=radio] , input[type=submit] {
+  width: auto;
 }
 
 h1.title {
@@ -143,7 +139,7 @@ td span {
 .winkelwagengrid {
   display:grid;
   grid-template-columns: 2fr repeat(5, 1fr);
-  grid-auto-rows: 300px;
+  /*grid-auto-rows: 300px;*/
   justify-content: center;
   margin-top: 40px;
   row-gap: 20px;

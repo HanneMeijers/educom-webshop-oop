@@ -108,6 +108,7 @@ function processRequest($page) {
         $data['menu']['login'] = "Login";
         $data['menu']['register'] = "Registreer";
     }
+    $data['canOrder'] = isUserLoggedIn();
     return $data;
 }
 

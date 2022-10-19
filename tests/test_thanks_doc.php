@@ -1,14 +1,16 @@
 <?php
 require_once "../views/thanks_doc.php";
+require_once("../constants.php");
+
 $data = array ( 'page' => 'Thanks', 
-                'menu' => array("thanks" => "thanks"),
-                'salutation' =>	'mr',
+                'menu' => array("home" => "Home", "about" => "Over mij", "contact" => "Contact",
+                "webshop" => "Wijnwinkel", "login" => "Login", "register" => "Registreer"),
+                'salutation' =>	'man',
                 'name' => 'Donald Duck',
                 'email' => 'donald@duckstad.nl',
-                'commpref' => 'phone',
+                'commPref' => 'phone',
                 'phone' => '555546596',
-                'message' => 'Hallo'
-                /* other fields */ );
+                'message' => 'Hallo' );
 
 $view = new ThanksDoc($data);
 

@@ -3,7 +3,7 @@ require_once "basic_doc.php";
 
 abstract class ProductDoc extends BasicDoc {
     protected function showActionForm ($action, $buttontext, $productid= null) {
-        if (isUserLoggedIn()) {
+        if ($this->data['canOrder']) {
          echo '    <form method="post" action="index.php" >   
         <input type="hidden" name="page" value="cart"> 
         <input type="hidden" name="productid" value="'. $productid . '">

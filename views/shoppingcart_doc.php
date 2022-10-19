@@ -10,7 +10,7 @@ class ShoppingcartDoc extends ProductDoc {
 protected function showContent() {
     $shoppingCartRows = $this -> data['shoppingCartRows'];
     echo '<div class="winkelwagengrid">';
-    echo '<div class="table-responsive">
+    echo '
         <table class="table-bordered">
         <tr class="table-headers">
             <th>Product</th>
@@ -25,26 +25,25 @@ protected function showContent() {
       
     echo '  
     </table>
-    </div>
+    
     </div>'; 
-    showActionForm("order", "Bestellen");
-    echo '</div>';
+    $this->showActionForm("order", "Bestellen");
 }
 
 private function showShoppingCartRow($shoppingCartRow) { 
     echo '<tr>';
     echo '<td><div><img src="Images/' . $shoppingCartRow['img_url'] .'" alt="' . $shoppingCartRow['name'] . '" height="100px" ></div>';
-    echo '<span><div>'.  $shoppingCartRow['name']. '</span></td></div>';
+    echo '<span><div>'.  $shoppingCartRow['name']. '</div></span></td>';
     echo '<td>'; 
-    showActionForm("decreaseQuantity", "-", $shoppingCartRow['productid']);
+    $this->showActionForm("decreaseQuantity", "-", $shoppingCartRow['productid']);
     echo $shoppingCartRow['quantity']; 
-    showActionForm("increaseQuantity", "+", $shoppingCartRow['productid']);
+    $this->showActionForm("increaseQuantity", "+", $shoppingCartRow['productid']);
     echo '</td>';
     echo '<td> &euro;&nbsp;'. number_format ($shoppingCartRow['price_per_one'], 2,',','.'). '</td>';
     echo '<td> &euro;&nbsp;'. number_format ($shoppingCartRow['subtotal'], 2,',','.'). '</td>';
     echo '<td> &euro;&nbsp;'. number_format ($shoppingCartRow['running_total'], 2,',','.'). '</td>';
     echo '<td>';
-    showActionForm("removefromcard", "Verwijderen", $shoppingCartRow [ 'productid' ]);
+    $this->showActionForm("removefromcard", "Verwijderen", $shoppingCartRow [ 'productid' ]);
     echo '</td>';
     echo '</tr>';
 }
