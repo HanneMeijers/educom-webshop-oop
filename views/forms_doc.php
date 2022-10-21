@@ -6,7 +6,7 @@ abstract class FormsDoc extends BasicDoc {
 
         echo '<form method="post" action="index.php">';
         $this->showFormContent();
-        echo '<input type="hidden" name="page" value="'.$this->data['page'].'">';
+        echo '<input type="hidden" name="page" value="'.$this->model -> page.'">';
         echo '</form>';
     }
 

@@ -1,4 +1,5 @@
 <?php
+/*
 require_once ("repository_db.php");
 function handleShoppingCartActions () {
     $action = getPostDataVariabele("action");
@@ -101,6 +102,7 @@ function showShoppingCartRow($shoppingCartRow) {
     echo '</td>';
     echo '</tr>';
 }
+*/
 
 
 

@@ -3,10 +3,10 @@ require_once "html_doc.php";
 
 class BasicDoc extends HtmlDoc {
 
-    protected $data;
+    protected $model;
 
-    public function __construct($data) {
-        $this->data = $data;
+    public function __construct($model) {
+        $this->model = $model;
     }
 
     private function showBasicHeader() 
@@ -23,17 +23,15 @@ class BasicDoc extends HtmlDoc {
     private function showMenu ()
     {
         echo '<ul class="navigation">';
-        foreach ($this->data['menu'] as $linkPage => $labelText) {
-            echo '<li><a HREF="index.php?page=' . $linkPage . '">' . $labelText. '</a></li>';
+        foreach ($this->model -> menu as $menuItem) {
+        $menuItem -> showMenuItem();
         }
         echo '</ul>' ;
     }
 
     
     private function showGenericErr() {
-        if (isset($this->data ["genericErr"])) {
-            echo '<div class="error">'. $this->data ["genericErr"] ."</div>";
-        }
+            echo '<div class="error">'. $this->model-> genericErr ."</div>";
     }
     
     protected function showContent() {

@@ -1,50 +1,18 @@
 <?php 
-require_once("session_manager.php");
+session_start();
+require_once("controllers/page_controller.php");
+
+$controller = new PageController();
+$controller-> handleRequest();
+
 //Main applicatie
+/*
 $page = getRequestedPage();
 $data = processRequest($page);
 var_dump($data);
 showResponsePage($data);
-
-function getRequestedPage () {
-    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-        $requestedPage = getUrlVariabele('page', 'home');
-    } else {
-        $requestedPage = getPostDataVariabele('page');
-    }
-    return ($requestedPage);
-    
-}
-/**
- * Zoek variabele in de url en retourneer deze.
- * @param $key dit is de naam van de variabele waar we naar op zoek zijn.
- * @param $default (optional) value to return when the $key is not found.
- * @return value of the $key or the $default if $key is not found. 
- */
-function getUrlVariabele($key, $default = '') {
- return getArrayVar($_GET, $key, $default);
-}
-/**
- * Zoek variabele in de POST data en retourneer deze.
- * @param $key dit is de naam van de variabele waar we naar op zoek zijn.
- * @param $default (optional) value to return when the $key is not found.
- * @return value of the $key or the $default if $key is not found. 
- */
-function getPostDataVariabele($key, $default = '') {
-return getArrayVar($_POST, $key, $default);
-}
-/**
- * Zoek variabele in de $array en retourneer deze.
- * @param $array dit is de array waarin we gaan zoeken.
- * @param $key dit is de naam van de variabele waar we naar op zoek zijn.
- * @param $default (optional) value to return when the $key is not found.
- * @return value of the $key or the $default if $key is not found. 
- */
-function getArrayVar($array, $key, $default='') 
-{ 
-   return isset($array[$key]) ? $array[$key] : $default; 
-} 
-
+*/
+/*
 function processRequest($page) {
     switch($page) {
     case 'login':
@@ -111,7 +79,7 @@ function processRequest($page) {
     $data['canOrder'] = isUserLoggedIn();
     return $data;
 }
-
+ */
 function showResponsePage($data) {
     $view = NULL;
     switch($data['page']) { 
@@ -259,16 +227,5 @@ function cleanupInputFromUser($data) {;
 function logToServer ($message) {
     echo 'Logging to server' . $message;
 }
-
-function showActionForm ($action, $buttontext, $productid= null) {
-   if (isUserLoggedIn()) {
-    echo '    <form method="post" action="index.php" >   
-   <input type="hidden" name="page" value="cart"> 
-   <input type="hidden" name="productid" value="'. $productid . '">
-   <input type="hidden" name="action" value="'. $action .'"> 
-   <button>' . $buttontext. '</button>
-   </form> ';
-    }
-    }
    
 
