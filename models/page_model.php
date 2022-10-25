@@ -47,7 +47,7 @@ class PageModel {
  * Zoek variabele in de POST data en retourneer deze.
  * @param $key dit is de naam van de variabele waar we naar op zoek zijn.
  * @param $default (optional) value to return when the $key is not found.
- * @return value of the $key or the $default if $key is not found. 
+ * @return mixed value of the $key or the $default if $key is not found. 
  */
 function getPostDataVariabele($key, $default = '') {
     return $this->getArrayVar($_POST, $key, $default);
@@ -57,7 +57,7 @@ function getPostDataVariabele($key, $default = '') {
      * @param $array dit is de array waarin we gaan zoeken.
      * @param $key dit is de naam van de variabele waar we naar op zoek zijn.
      * @param $default (optional) value to return when the $key is not found.
-     * @return value of the $key or the $default if $key is not found. 
+     * @return mixed value of the $key or the $default if $key is not found. 
      */
     function getArrayVar($array, $key, $default='') 
     { 
@@ -68,11 +68,15 @@ function getPostDataVariabele($key, $default = '') {
      * Zoek variabele in de GET data en retourneer deze.
      * @param $key dit is de naam van de variabele waar we naar op zoek zijn.
      * @param $default (optional) value to return when the $key is not found.
-     * @return value of the $key or the $default if $key is not found. 
+     * @return mixed value of the $key or the $default if $key is not found. 
      */
 function getUrlVariabele($key, $default = '') {
     return $this->getArrayVar($_GET, $key, $default);
     }
+
+    protected function logToServer ($message) {
+      echo 'Logging to server' . $message;
+  }
 
    public function createMenu() {
 	   $this->menu['home'] = new MenuItem('home', 'Home');
