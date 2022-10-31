@@ -13,7 +13,7 @@ protected function showFormContent() {
 foreach(SALUTATIONS as $salutationKey => $salutationValue) {
    echo PHP_EOL . '<option value="' . $salutationKey . '" ';
    if ($this->model -> salutation == $salutationKey) { echo "selected"; } 
-   echo '>' .$salutationValue. '</option>';  
+   echo '>' . $salutationValue. '</option>';  
 }     
 echo '</select> 
  <span class="error"> '. $this->model ->salutationErr .'</span>

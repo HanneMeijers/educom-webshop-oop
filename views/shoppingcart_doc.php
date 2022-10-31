@@ -8,7 +8,7 @@ class ShoppingcartDoc extends ProductDoc {
     }
 
 protected function showContent() {
-    $shoppingCartRows = $this -> data['shoppingCartRows'];
+    $shoppingCartRows = $this -> model-> shoppingCartRows;
     echo '<div class="winkelwagengrid">';
     echo '
         <table class="table-bordered">

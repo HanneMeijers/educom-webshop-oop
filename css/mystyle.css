@@ -23,7 +23,9 @@ h1.title {
   color: navy;
   margin-left: 20px;
   font-size: 48px;
+  line-height: normal;
 }
+
 
 footer{
   background-color:black;

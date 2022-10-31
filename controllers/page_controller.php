@@ -3,43 +3,119 @@ require_once "models/page_model.php";
 
 class PageController {
 
-   private $model;
+    private $model;
 
-   public function __construct() {
+    public function __construct() {
       $this->model = new PageModel(NULL);
-   }
+    }
 
-   public function handleRequest() {
-      $this->getRequest();
-	  $this->processRequest();
-      $this->showResponsePage();
-  }
+    public function handleRequest() {
+        $this->getRequest();
+	    $this->processRequest();
+        $this->showResponsePage();
+    }
 
-  // from client
-  private function getRequest() {
-      $this->model->getRequestedPage();
-  }
+    // from client
+    private function getRequest() {
+        $this->model->getRequestedPage();
+    }
 
-  // business flow code
-  private function processRequest() {
-      switch($this->model->page) {
+    // business flow code
+    private function processRequest() {
+        switch($this->model->page) {
 
-      case "Login":
-/*         $this->model = new UserModel($this->model);
-         $this->model->validateLogin();
-         if ($this->model->valid) {
-			 $this->model->doLoginUser();
-             $this->model->setPage("home");
-		 } */
-         break;
-        case "register":
-  /*       $this->model = new UserModel($this->model);
-         $this->model->validateRegister();
-         if ($this->model->valid) {
-                $this->model->storeUser();
+        case 'login':
+            require_once "models/user_model.php";
+            $this->model = new UserModel($this->model);
+            $this->model->validateLogin();
+            if ($this->model->valid) {
+			    $this->model->doLoginUser();
                 $this->model->setPage("home");
-            } */
+		    } 
             break;
+        case 'logout':
+            require_once "models/user_model.php";
+            $this->model = new UserModel($this->model);
+            $this->model->doLogoutUser();
+            $this->model->setPage("home");
+            break;
+        case 'contact':
+            require_once "models/user_model.php";
+            $this->model = new UserModel($this->model);
+            $this->model->validateContact();
+            if ($this->model->valid){
+                $this->model->setPage("thanks");
+            } 
+            break;
+        case 'webshop':
+            require_once "models/shop_model.php";
+            $this->model = new ShopModel($this->model);
+            $this->model-> getWebShopData ();
+            break;
+        case 'detail':
+            require_once "models/shop_model.php";
+            $this->model = new ShopModel($this->model);
+            $this->model->getWebshopDetailData ();
+            break;
+        case 'register':
+            require_once "models/user_model.php";
+            $this->model = new UserModel($this->model);
+            $this->model->validateRegister ();
+            if ($this->model->valid){
+                $this->model->storeUser();
+                $this->model->setPage("login");
+            }
+            break;
+        case 'cart':
+            require_once "models/shop_model.php";
+            $this->model = new ShopModel($this->model);
+            $this->model->handleShoppingCartActions();
+            if ($this->model->ordered){
+                $this->model->setPage("orderconformation");
+            } else{
+                $this->model->getShoppingCartData ();
+            }
+            break;
+    
+          
+          /*
+        case 'contact':
+            require_once 'contact.php';
+            $data = validateContact();
+            if ($data['valid']) {
+                $page='thanks';
+            }
+            break;
+        
+        case 'register':
+            require_once 'register.php';
+            $data = validateRegister();
+            if ($data['valid']) {
+                storeUser($data);
+                $page='login';
+            }
+            break;
+    
+        case 'webshop':
+            require_once 'webshop.php';
+            $data = getWebshopData();
+            break;
+    
+        case 'cart':
+            require_once 'shoppingcart.php';
+            $data = handleShoppingCartActions ();
+            if (isset($data['ordered'])) {
+                $page = 'orderconformation';
+            } else {
+                $data = getShoppingCartData();
+            }
+            break;  
+        
+        case 'detail';
+            require_once 'webshop_details_page.php';
+            $data = getWebshopDetailData();
+            break;
+        }*/
     }
   }
   // to client: presentatie laag
@@ -83,10 +159,14 @@ class PageController {
               require_once("views/shoppingcart_doc.php");
             $view = new ShoppingCartDoc($this->model);
             break;
-            /*
-        case orderconformation
-            require_once("orderconformation
-            */
+        case "orderconformation":
+            require_once("views/order_conformation_doc.php");
+            $view = new OrderConformationDoc($this->model);
+            break;
+        case "detail":
+            require_once ("views/webshop_details_page_doc.php");
+        $view = new WebshopDetailsPageDoc($this->model);
+        break;
         default:
             require_once("views/unknown_page_doc.php");
             $view = new UnknownPageDoc ($this->model);

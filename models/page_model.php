@@ -7,7 +7,6 @@ class PageModel {
    public $page;
    protected $isPost = false;
    public $menu;
-   public $errors = array();
    public $genericErr = '';
    protected $sessionManager;
 
@@ -22,10 +21,6 @@ class PageModel {
           $this->menu = $copy->menu;
           $this->genericErr = $copy->genericErr;
           $this->sessionManager = $copy->sessionManager; 
-          $this->errors = $copy->errors;
-          $this->getRequestedPage = $copy->getRequestedPage;
-          $this->createMenuArray = $copy->createMenuArray;
-          $this->isLoggedIn = $copy->isLoggedIn;
        }
    }
 
@@ -40,7 +35,7 @@ class PageModel {
       }
    }
   
-   protected function setPage($newPage) {
+   public function setPage($newPage) {
         $this->page = $newPage;
    } 
  /**
@@ -79,16 +74,18 @@ function getUrlVariabele($key, $default = '') {
   }
 
    public function createMenu() {
-	   $this->menu['home'] = new MenuItem('home', 'Home');
-       $this->menu['about'] = new MenuItem('about', 'Over Mij');
-       $this->menu['contact'] = new MenuItem('contact', 'Contact');
-       $this->menu['webshop'] = new MenuItem('webshop', 'Wijnwinkel');
-       $this->menu['login'] = new MenuItem('login', 'Login');
-       $this->menu['register'] = new MenuItem('register', 'Registreer');
-    
-       if ($this->sessionManager->isUserLoggedIn()) {
-            $this->menu['logout'] = new MenuItem('logout', 'LOGOUT', 
-                         $this->sessionManager->getLoggedInUser()['name']);
-       }
-    }
+      $this->menu['home'] = new MenuItem('home', 'Home');
+      $this->menu['about'] = new MenuItem('about', 'Over Mij');
+      $this->menu['contact'] = new MenuItem('contact', 'Contact');
+      $this->menu['webshop'] = new MenuItem('webshop', 'Wijnwinkel');
+
+      if ($this->sessionManager->isUserLoggedIn()) {
+         $this->menu['cart'] = new MenuItem('cart', 'Winkelwagen');                  
+         $this->menu['logout'] = new MenuItem('logout', 'Logout', 
+                                              $this->sessionManager->getLoggedInUsername());
+      } else {
+         $this->menu['login'] = new MenuItem('login', 'Login');
+         $this->menu['register'] = new MenuItem('register', 'Registreer');   
+      }
+   }
 }

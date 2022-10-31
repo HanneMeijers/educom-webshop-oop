@@ -3,8 +3,8 @@ require_once "product_doc.php";
 class WebshopDetailsPageDoc extends ProductDoc {
 
         protected function showHeader() {
-            if (isset($this -> data['product']['name'])) {
-                $product = $this -> data['product'];
+            if (isset($this -> model-> product)) {
+                $product = $this -> model->product;
                 echo $product['name'];
             } else {
                 echo 'Detail pagina';
@@ -12,7 +12,7 @@ class WebshopDetailsPageDoc extends ProductDoc {
         }
 
         protected function showContent () {
-            $product = $this -> data['product'];
+            $product = $this -> model -> product;
             $this ->  showProduct($product);
         }
 

@@ -11,23 +11,23 @@ protected function showFormContent () {
     echo '  
    <div>
       <label for="name">Naam:</label>
-      <input type="text" id="name" name="name" value="'. $this->data ["name"] .'" placeholder="Jan Klaassen">
-      <span class="error"> '. $this->data ["nameErr"] .' </span>
+      <input type="text" id="name" name="name" value="'. $this->model-> name .'" placeholder="Jan Klaassen">
+      <span class="error"> '. $this->model-> nameErr .' </span>
   </div>
   <div>
       <label for="e-mail">E-mailadres:</label>
-      <input type="email" id="e-mail" name="email" value="'. $this->data ["email"] .'">
-      <span class="error"> '. $this->data ["emailErr"] .' </span>
+      <input type="email" id="e-mail" name="email" value="'. $this->model-> email .'">
+      <span class="error"> '. $this->model-> emailErr .' </span>
   </div>
   <div>
       <label for="password">Wachtwoord:</label>
-      <input type="password" id="password" name="password" value="'. $this->data ["password"] .'">
-      <span class="error"> '. $this->data ["passwordErr"] .' </span>
+      <input type="password" id="password" name="password" value="'. $this->model->password .'">
+      <span class="error"> '. $this->model-> passwordErr .' </span>
   </div>
   <div>
       <label for="passwordCheck">Wachtwoord herhaal:</label>
-      <input type="password" id="passwordCheck" name="passwordCheck" value="'. $this -> data ["passwordCheck"] .'">
-      <span class="error"> '. $this->data ["passwordCheckErr"] .' </span>
+      <input type="password" id="passwordCheck" name="passwordCheck" value="'. $this -> model ->passwordCheck .'">
+      <span class="error"> '. $this->model-> passwordCheckErr .' </span>
   </div>
   <div>
     <input type="submit" value="Verzend"> 

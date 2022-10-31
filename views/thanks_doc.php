@@ -10,11 +10,11 @@ protected function showHeader () {
 
 protected function showContent () {
     echo '<p>Uw bericht:</p> 
-    <div>Aanhef: '. SALUTATIONS [ $this->data ["salutation"] ] .'</div>    
-    <div>Naam: '. $this->data ["name"] .' </div>
-    <div>Email: '. $this->data ["email"] .' </div>
-    <div>Telefoonnummer: '. $this->data ["phone"] .' </div>
-    <div>Communicatievoorkeur: '. COMMPREFS[ $this->data ["commPref"] ].' </div>
-    <div>Uw bericht: '. $this->data ["message"] .' </div> ';
+    <div>Aanhef: '. SALUTATIONS [ $this->model ->salutation ] .'</div>    
+    <div>Naam: '. $this->model -> name .' </div>
+    <div>Email: '. $this->model->email .' </div>
+    <div>Telefoonnummer: '. $this->model ->phone .' </div>
+    <div>Communicatievoorkeur: '. COMMPREFS[ $this->model ->commPref ].' </div>
+    <div>Uw bericht: '. $this->model ->message .' </div> ';
 }
 }
