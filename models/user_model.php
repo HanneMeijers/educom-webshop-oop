@@ -45,10 +45,7 @@ class UserModel extends PageModel {
             $this -> nameErr = "Naam is verplicht";
         }
 
-        $this -> email = $this-> getCleanPostDataVariabele("email");
-        if (empty($this -> email)) {
-            $this -> emailErr = "E-mail is verplicht";
-        }
+        $this -> validateEmail();
 
         $this ->phone = $this->getCleanPostDataVariabele("phone");
         if (empty($this -> phone)) {
@@ -76,14 +73,7 @@ class UserModel extends PageModel {
             return;
         }
         // It is a post
-        $this->email = $this->getCleanPostDataVariabele('email');
-        if (empty($this->email)) {
-            $this->emailErr = "E-mail is verplicht";
-        } else {
-            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-                $this->emailErr = "Vul geldig e-mailadres in";
-            }
-        }
+        $this -> validateEmail();
 
         $this->password = $this->getCleanPostDataVariabele("password");
         if (empty($this->password)) {
@@ -121,16 +111,7 @@ class UserModel extends PageModel {
         elseif (strlen($this->name)>50) {
             $this->nameErr = "Naam moet minder dan 50 karakters zijn";
         } 
-
-        $this->email = $this->getCleanPostDataVariabele('email');
-        if (empty($this->email)) {
-            $this->emailErr = "E-mail is verplicht";
-        } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-                $this->emailErr = "ongeldig email format";
-        }
-        elseif (strlen($this->email)>50) {
-            $this->emailErr = "email moet minder dan 50 karakters zijn";
-        }
+        $this -> validateEmail ();
         
         $this->password = $this->getCleanPostDataVariabele('password');
         if (empty($this->password)) {
@@ -158,6 +139,17 @@ class UserModel extends PageModel {
            
         }
 
+    private function validateEmail() {
+        $this->email = $this->getCleanPostDataVariabele('email');
+        if (empty($this->email)) {
+            $this->emailErr = "E-mail is verplicht";
+        } elseif (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+                $this->emailErr = "ongeldig email format";
+        }
+        elseif (strlen($this->email)>50) {
+            $this->emailErr = "email moet minder dan 50 karakters zijn";
+        }
+    }
     /**
      * Takes the input of a user and trims the whithespace in front en behind
      * and removes all html special characters or replaces them with HTML equvalents
